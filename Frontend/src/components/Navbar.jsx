@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Logout from "./Logout";
 import Login from "./Login";
+import { useAuth } from "../context/AuthProvider";
 
 function Navbar() {
-  
-  const [sticky, setSticky] = useState(false);
+  const [authUser, setAuthUser] = useAuth();
+    const [sticky, setSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -26,10 +28,10 @@ function Navbar() {
         <a href="/course">Course</a>
       </li>
       <li>
-        <a href="/contact">Contact</a>
+        <a>Contact</a>
       </li>
       <li>
-        <a href="/about">About</a>
+        <a>About</a>
       </li>
     </>
   );
@@ -67,7 +69,7 @@ function Navbar() {
                 </svg>
               </div>
               <ul
-                tabIndex="-1"
+                tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               >
                 {navItems}
@@ -100,13 +102,16 @@ function Navbar() {
                 </svg>
               </label>
             </div>
-
-            <div className="">
-              <a className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer" onClick={()=>document.getElementById('my_modal_3').showModal()}>
-                Login
-              </a>
-              <Login/>
+              {authUser ? (
+                <Logout />
+              ) : (
+                  <div className="">
+                  <a className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer" onClick={()=>document.getElementById('my_modal_3').showModal()}>
+                    Login
+                  </a>
+                  <Login/>
             </div>
+              )}
           </div>
         </div>
       </div>

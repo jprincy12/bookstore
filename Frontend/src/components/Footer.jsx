@@ -7,8 +7,8 @@ function Footer() {
     <hr />
     <footer className="footer footer-horizontal footer-center  text-base-content rounded p-10">
       <nav className="grid grid-flow-col gap-4">
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
+        <a href="/about" className="link link-hover">About us</a>
+        <a href="/contact" className="link link-hover ">Contact</a>
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">
